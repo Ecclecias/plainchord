@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+# PlainChord
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is an initiative to create a Universal Standard for Chord data.
 
-## Available Scripts
+## How does it work?
 
-In the project directory, you can run:
+A plain text file following the established Text Standard is transformed into an Object that can be viewed through the Component.
 
-### `npm start`
+### PlainChord (Text Standard)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The Chords have `title`, `author`, `capo` fields, in addition to `sections`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Following the Standard:
 
-### `npm test`
+```
+Title
+Author
+#1
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+@Into
+$C $G/B $Am
 
-### `npm run build`
+@Music
+$C Doxa tō Theō $G/B Lorren $Am Christos
+````
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Thus forming a "complete" Chord for the interpreter.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Chord Object (JSON)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+PlainChord is transpiled to an Object:
 
-### `npm run eject`
+```JSON
+{
+    "title": "Title",
+    "artist": "Author",
+    "capo": 1,
+    "sections": [
+        {
+            "lyrics": [
+                {
+                    "title": "Into",
+                    "chords": [
+                        [
+                            {
+                                "chord": "C",
+                                "lyrics": ""
+                            },
+                            {
+                                "chord": "G/B",
+                                "lyrics": ""
+                            },
+                            {
+                                "chord": "Am",
+                                "lyrics": ""
+                            }
+                        ]
+                    ],
+                    "repeat": 0
+                }
+            ]
+        },
+        {
+            "lyrics": [
+                {
+                    "title": "Music",
+                    "chords": [
+                        [
+                            {
+                                "chord": "C",
+                                "lyrics": " Doxa tō Theō"
+                            },
+                            {
+                                "chord": "G/B",
+                                "lyrics": " Lorren"
+                            },
+                            {
+                                "chord": "Am",
+                                "lyrics": " Christos"
+                            }
+                        ]
+                    ],
+                    "repeat": 0
+                }
+            ]
+        }
+    ]
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To be displayed by a React Component.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Example [via cID.](https://plainchord.surge.sh/?cid=QmZteiNT4WNyhmVzVz9BSuQscrQXJbCDcvEqnU6RxxCYpu)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Possible Improvements
+- [ ] Improve Parse and Stringify logic (?)
+- [ ] Improve logic that gets the Tonic
+- [ ] Implement Tablatures
+- [ ] Documentation about .Chord and .PlainChord and how to use them
+- [ ] Create Unit Tests
+- [ ] Implement Typescript
+- [ ] Support for "Embed"
+- [ ] Auto Scroll
